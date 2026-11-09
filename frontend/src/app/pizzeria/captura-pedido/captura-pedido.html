@@ -1,0 +1,81 @@
+<div class="w-full font-sans">
+    <h3 class="text-xl font-black text-gray-800 mb-6 flex items-center gap-2 uppercase tracking-wide">
+        <span class="text-red-600">📋</span> Datos del Pedido
+    </h3>
+    <form [formGroup]="pedidoForm" (ngSubmit)="agregarPizza()">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Nombre</label>
+                <input type="text" formControlName="nombre" placeholder="Ej. Mario Juarez"
+                       class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Dirección</label>
+                <input type="text" formControlName="direccion" placeholder="Ej. 5 de mayo"
+                       class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Teléfono</label>
+                <input type="text" formControlName="telefono" placeholder="Ej. 477-787-23"
+                       class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-gray-500 uppercase tracking-wide mb-1">Fecha</label>
+                <input type="date" formControlName="fecha" 
+                       class="w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all text-gray-700">
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100 shadow-sm">
+                <p class="font-bold text-gray-800 mb-3 uppercase tracking-wider text-sm border-b border-gray-200 pb-2">Tamaño</p>
+                <div class="flex flex-col gap-3">
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input type="radio" formControlName="tamano" value="Chica" class="accent-red-600 w-4 h-4 cursor-pointer">
+                        <span class="text-sm text-gray-700 group-hover:text-red-600 transition-colors">Chica <span class="font-bold text-gray-900 ml-1">$40</span></span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input type="radio" formControlName="tamano" value="Mediana" class="accent-red-600 w-4 h-4 cursor-pointer">
+                        <span class="text-sm text-gray-700 group-hover:text-red-600 transition-colors">Mediana <span class="font-bold text-gray-900 ml-1">$80</span></span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input type="radio" formControlName="tamano" value="Grande" class="accent-red-600 w-4 h-4 cursor-pointer">
+                        <span class="text-sm text-gray-700 group-hover:text-red-600 transition-colors">Grande <span class="font-bold text-gray-900 ml-1">$120</span></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 rounded-xl p-5 border border-gray-100 shadow-sm" formGroupName="ingredientes">
+                <p class="font-bold text-gray-800 mb-3 uppercase tracking-wider text-sm border-b border-gray-200 pb-2">Ingredientes Extras</p>
+                <div class="flex flex-col gap-3">
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input type="checkbox" formControlName="jamon" class="accent-red-600 w-4 h-4 rounded cursor-pointer">
+                        <span class="text-sm text-gray-700 group-hover:text-red-600 transition-colors">Jamón <span class="font-bold text-gray-900 ml-1">+$10</span></span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input type="checkbox" formControlName="pina" class="accent-red-600 w-4 h-4 rounded cursor-pointer">
+                        <span class="text-sm text-gray-700 group-hover:text-red-600 transition-colors">Piña <span class="font-bold text-gray-900 ml-1">+$10</span></span>
+                    </label>
+                    <label class="flex items-center gap-3 cursor-pointer group">
+                        <input type="checkbox" formControlName="champinones" class="accent-red-600 w-4 h-4 rounded cursor-pointer">
+                        <span class="text-sm text-gray-700 group-hover:text-red-600 transition-colors">Champiñones <span class="font-bold text-gray-900 ml-1">+$10</span></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="flex flex-col justify-between h-full">
+                <div class="bg-gray-50 rounded-xl p-5 border border-gray-100 shadow-sm mb-4 flex-1 flex flex-col justify-center">
+                    <label class="block text-center font-bold text-gray-800 mb-3 uppercase tracking-wider text-sm">Cantidad</label>
+                    <input type="number" formControlName="num_pizzas" min="1" 
+                           class="w-full text-center bg-white border border-gray-200 rounded-lg px-4 py-2 text-xl font-bold text-gray-800 focus:outline-none focus:border-red-500 focus:ring-1 focus:ring-red-500 transition-all mx-auto max-w-[120px]">
+                </div>
+                <button type="submit" 
+                        class="w-full bg-gray-800 text-white font-bold tracking-widest py-3 rounded-xl hover:bg-red-600 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 uppercase text-sm">
+                    Agregar a la Orden
+                </button>
+            </div>
+
+        </div>
+    </form>
+</div>

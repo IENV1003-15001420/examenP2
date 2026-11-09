@@ -1,0 +1,44 @@
+<div class="flex flex-col h-full justify-between">   
+    <h3 class="text-xl font-black text-gray-800 mb-4 flex items-center gap-2 uppercase tracking-wide">
+        <span class="text-red-600">🛒</span> Tu Pedido
+    </h3>
+    <div class="overflow-x-auto mb-6 bg-gray-50 rounded-xl border border-gray-200">
+        <table class="w-full text-sm text-left text-gray-600">
+            <thead class="text-xs uppercase bg-gray-200 text-gray-700">
+                <tr>
+                    <th class="px-4 py-3 text-center rounded-tl-xl">Sel.</th>
+                    <th class="px-4 py-3">Tamaño</th>
+                    <th class="px-4 py-3">Ingredientes</th>
+                    <th class="px-4 py-3 text-center">Cant.</th>
+                    <th class="px-4 py-3 text-right rounded-tr-xl">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pizza of listaPizzas; let i = index" class="border-b border-gray-200 hover:bg-red-50 transition-colors">
+                    <td class="px-4 py-3 text-center">
+                        <input type="radio" name="seleccionPizza" (change)="seleccionarPizza(i)" class="accent-red-600 w-4 h-4 cursor-pointer">
+                    </td>
+                    <td class="px-4 py-3 font-bold text-gray-800">{{ pizza.tamano }}</td>
+                    <td class="px-4 py-3 text-xs">{{ pizza.ingredientesTexto }}</td>
+                    <td class="px-4 py-3 text-center font-bold">{{ pizza.num_pizzas }}</td>
+                    <td class="px-4 py-3 text-right font-black text-red-600">${{ pizza.subtotal }}</td>
+                </tr>
+
+                <tr *ngIf="listaPizzas.length === 0">
+                    <td colspan="5" class="text-center py-10 text-gray-400 italic">
+                        Aún no has agregado pizzas a tu pedido.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="flex flex-col sm:flex-row justify-between gap-4 mt-auto">
+        <button (click)="quitarPizza()" class="px-6 py-2 rounded-full border-2 border-gray-300 text-gray-600 font-bold hover:bg-gray-100 hover:text-red-600 transition-colors">
+            Quitar Seleccionada
+        </button>
+        <button (click)="terminarPedido()" class="px-8 py-2 rounded-full bg-red-600 text-white font-bold tracking-widest hover:bg-red-700 shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5">
+            PROCESAR PEDIDO
+        </button>
+    </div>
+</div>
